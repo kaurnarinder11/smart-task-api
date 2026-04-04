@@ -1,11 +1,14 @@
 # app/main.py
 from fastapi import FastAPI
 from app.core.config import settings
+from app.routes import tasks
 
 # Validate config on startup
 settings.validate()
 
 app = FastAPI(title=settings.APP_NAME, debug=settings.DEBUG)
+
+app.include_router(tasks.router)
 
 @app.get("/")
 def home():
