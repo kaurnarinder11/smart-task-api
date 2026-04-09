@@ -1,4 +1,6 @@
 from fastapi import APIRouter, HTTPException
+from app.schemas.task import TaskCreate, TaskResponse  # ADD THIS
+from app.services.task_service import validate_and_prepare_task  # ADD THIS
 
 router = APIRouter()
 
@@ -22,18 +24,21 @@ def get_one_task(task_id: int):
     raise HTTPException(status_code=404, detail=f"Task {task_id} not found")
 
 # POST /tasks - Create a new task
-@router.post("/tasks")
-def create_task(task: dict):
+@router.post("/tasks", response_model=dict)  # We'll improve response_model later
+def create_task(task: TaskCreate):  # ← Changed from dict to TaskCreate
     global task_id_counter
     
-    # Validation: title is required
-    if "title" not in task:
-        raise HTTPException(status_code=400, detail="Title is required")
+    # Use service for validation
+    result = validate_and_prepare_task(task)
     
+    if not result["valid"]:
+        raise HTTPException(status_code=400, detail=result["error"])
+    
+    # Create task using validated data
     new_task = {
         "id": task_id_counter,
-        "title": task["title"],
-        "status": task.get("status", "pending")  # Default status = "pending"
+        "title": result["data"]["title"],
+        "status": result["data"]["status"]
     }
     
     tasks_db.append(new_task)
