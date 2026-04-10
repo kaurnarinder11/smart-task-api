@@ -1,9 +1,14 @@
 # app/main.py
 from fastapi import FastAPI
+from app.db.database import Base, engine
+from app.models import task  
 from app.core.config import settings
 from app.routes import tasks
 
-# Validate config on startup
+
+
+Base.metadata.create_all(bind=engine)
+
 settings.validate()
 
 app = FastAPI(title=settings.APP_NAME, debug=settings.DEBUG)
