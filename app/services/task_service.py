@@ -2,7 +2,7 @@
 from sqlalchemy.orm import Session
 from app.models.task import Task
 from app.schemas.task import TaskCreate
-from app.core.database import SessionLocal
+from app.db.database import SessionLocal
 
 # ============ CREATE ============
 def create_task_logic(task: TaskCreate):
