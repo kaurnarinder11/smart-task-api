@@ -1,123 +1,124 @@
-
-#TASK SERVICE WITH DATABASE
-
-
-from app.db.database import SessionLocal
+# app/services/task_service.py
+from sqlalchemy.orm import Session
 from app.models.task import Task
-from app.schemas.task import TaskCreate, TaskUpdate
+from app.schemas.task import TaskCreate
+from app.core.database import SessionLocal
 
+# ============ CREATE ============
 def create_task_logic(task: TaskCreate):
     """Create a new task in database"""
-    
-    # BUSINESS RULE: Title cannot be empty or just spaces
-    if not task.title or len(task.title.strip()) == 0:
-        return {"error": "Title cannot be empty"}
-    
-    # BUSINESS RULE: Title must be at least 3 characters
-    if len(task.title.strip()) < 3:
-        return {"error": "Title must be at least 3 characters"}
-    
-    # Create database session
     db = SessionLocal()
-    
     try:
-        # Create new Task object (NOT saved yet)
-        new_task = Task(
-            title=task.title.strip(),
-            completed=task.completed if hasattr(task, 'completed') else False
-        )
-        
-        # Add to session (stage for saving)
-        db.add(new_task)
-        
-        # Commit to database (actually save)
+        db_task = Task(title=task.title, completed=task.completed)
+        db.add(db_task)
         db.commit()
-        
-        # Refresh to get the auto-generated ID
-        db.refresh(new_task)
-        
-        return new_task
-    except Exception as e:
-        # If something goes wrong, undo changes
-        db.rollback()
-        raise e
+        db.refresh(db_task)
+        return db_task
     finally:
-        # ALWAYS close the session
         db.close()
 
-
-def get_tasks_logic():
+# ============ READ ALL ============
+def get_all_tasks_logic():
     """Get all tasks from database"""
-    
     db = SessionLocal()
-    
     try:
-        # Query all tasks
         tasks = db.query(Task).all()
         return tasks
     finally:
         db.close()
 
-
+# ============ READ ONE ============
 def get_task_by_id_logic(task_id: int):
     """Get a single task by ID"""
-    
     db = SessionLocal()
-    
     try:
-        # Query specific task
         task = db.query(Task).filter(Task.id == task_id).first()
         return task
     finally:
         db.close()
 
-
-def update_task_logic(task_id: int, task_update: TaskUpdate):
-    """Update an existing task"""
-    
+# ============ UPDATE ============
+def update_task_logic(task_id: int, updated_data: TaskCreate):
+    """
+    Update an existing task
+    Returns: Updated task OR None if not found
+    """
     db = SessionLocal()
-    
     try:
-        # Find the task
+        # Step 1: Find the task
+        task = db.query(Task).filter(Task.id == task_id).first()
+        
+        # Step 2: If not found, return None
+        if not task:
+            return None
+        
+        # Step 3: BUSINESS RULE 1 - Cannot update completed tasks
+        if task.completed:
+            # You can handle this differently - let's return a special response
+            return {"error": "completed_task_cannot_be_updated"}
+        
+        # Step 4: BUSINESS RULE 2 - Title cannot be empty
+        if len(updated_data.title.strip()) == 0:
+            return {"error": "title_cannot_be_empty"}
+        
+        # Step 5: Update the fields
+        task.title = updated_data.title
+        task.completed = updated_data.completed
+        
+        # Step 6: Save to database
+        db.commit()
+        db.refresh(task)
+        
+        return task
+        
+    finally:
+        db.close()
+
+# ============ DELETE ============
+def delete_task_logic(task_id: int):
+    """
+    Delete a task by ID
+    Returns: True if deleted, False if not found
+    """
+    db = SessionLocal()
+    try:
+        # Step 1: Find the task
+        task = db.query(Task).filter(Task.id == task_id).first()
+        
+        # Step 2: If not found, return False
+        if not task:
+            return False
+        
+        # Step 3: Delete the task
+        db.delete(task)
+        db.commit()
+        
+        return True
+        
+    finally:
+        db.close()
+
+# ============ MARK COMPLETE (CHALLENGE) ============
+def mark_complete_logic(task_id: int):
+    """
+    Mark a task as completed
+    Returns: Updated task OR None if not found OR error if already completed
+    """
+    db = SessionLocal()
+    try:
         task = db.query(Task).filter(Task.id == task_id).first()
         
         if not task:
             return None
         
-        # Update only fields that are provided
-        if task_update.title is not None:
-            if len(task_update.title.strip()) < 3:
-                return {"error": "Title must be at least 3 characters"}
-            task.title = task_update.title.strip()
+        if task.completed:
+            return {"error": "task_already_completed"}
         
-        if task_update.completed is not None:
-            task.completed = task_update.completed
-        
-        # Save changes
+        task.completed = True
         db.commit()
         db.refresh(task)
         
         return task
-    finally:
-        db.close()
-
-
-def delete_task_logic(task_id: int):
-    """Delete a task"""
-    
-    db = SessionLocal()
-    
-    try:
-        # Find the task
-        task = db.query(Task).filter(Task.id == task_id).first()
         
-        if not task:
-            return False
-        
-        # Delete it
-        db.delete(task)
-        db.commit()
-        
-        return True
     finally:
         db.close()

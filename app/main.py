@@ -1,28 +1,31 @@
 # app/main.py
 from fastapi import FastAPI
-from app.db.database import Base, engine
-from app.models import task  
-from app.core.config import settings
 from app.routes import tasks
+from app.db.database import engine, Base
 
-
-
+# Create database tables
 Base.metadata.create_all(bind=engine)
 
-settings.validate()
+app = FastAPI(
+    title="Smart Task API",
+    description="A simple task management API with full CRUD",
+    version="1.0.0"
+)
 
-app = FastAPI(title=settings.APP_NAME, debug=settings.DEBUG)
-
+# Include routers
 app.include_router(tasks.router)
 
 @app.get("/")
-def home():
+def root():
     return {
-        "app_name": settings.APP_NAME,
-        "debug_mode": settings.DEBUG,
-        "secret_loaded": settings.SECRET_KEY is not None
+        "message": "Welcome to Smart Task API",
+        "endpoints": {
+            "tasks": "/tasks",
+            "create": "POST /tasks/",
+            "get_all": "GET /tasks/",
+            "get_one": "GET /tasks/{id}",
+            "update": "PUT /tasks/{id}",
+            "delete": "DELETE /tasks/{id}",
+            "complete": "PATCH /tasks/{id}/complete"
+        }
     }
-
-@app.get("/health")
-def health():
-    return {"status": "ok", "port": settings.PORT}

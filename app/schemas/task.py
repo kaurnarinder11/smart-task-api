@@ -1,18 +1,14 @@
-"""
-Pydantic Schemas for Task API
-Purpose: Define data shape, validation, and type hints
-"""
-
+# app/schemas/task.py
 from pydantic import BaseModel
-from typing import Optional
 
-# Request schema - What client sends to CREATE a task
 class TaskCreate(BaseModel):
     title: str
-    status: Optional[str] = "pending"  # Default value if not provided
+    completed: bool = False
 
-# Response schema - What API sends back to client
 class TaskResponse(BaseModel):
     id: int
     title: str
-    status: str
+    completed: bool
+    
+    class Config:
+        from_attributes = True 
