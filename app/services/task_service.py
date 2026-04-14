@@ -18,22 +18,25 @@ def create_task_logic(task: TaskCreate, user_id: int):
         db.close()
 
 # ============ READ ALL ============
-def get_all_tasks_logic(user_id: int):
-    """Get all tasks for the current user"""
+def get_all_tasks_logic(user_id, page, limit, completed=None, sort="desc"):
     db = SessionLocal()
     try:
-        tasks = db.query(Task).filter(Task.user_id == user_id).all()
-        return tasks
-    finally:
-        db.close()
+        skip = (page - 1) * limit
 
-# ============ READ ONE ============
-def get_task_by_id_logic(task_id: int, user_id: int):
-    """Get a single task by ID"""
-    db = SessionLocal()
-    try:
-        task = db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
-        return task
+        query = db.query(Task).filter(Task.user_id == user_id)
+
+        if completed is not None:
+            query = query.filter(Task.completed == completed)
+
+        # SORTING
+        if sort == "desc":
+            query = query.order_by(Task.id.desc())
+        else:
+            query = query.order_by(Task.id.asc())
+
+        tasks = query.offset(skip).limit(limit).all()
+
+        return tasks
     finally:
         db.close()
 
