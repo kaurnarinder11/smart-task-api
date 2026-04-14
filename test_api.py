@@ -1,56 +1,57 @@
 import requests
 
-BASE_URL = "http://localhost:8000"
 
-print("=" * 50)
-print("TESTING USER AUTHENTICATION API")
-print("=" * 50)
+BASE_URL = "http://127.0.0.1:8000/auth"
 
-# Test 1: Signup new user
-print("\n📝 TEST 1: Signup new user")
-response = requests.post(f"{BASE_URL}/auth/signup", params={
-    "email": "alice@test.com",
-    "password": "alice123"
-})
-print(f"Status: {response.status_code}")
-print(f"Response: {response.json()}")
 
-# Test 2: Duplicate signup (should fail)
-print("\n📝 TEST 2: Duplicate signup (should fail)")
-response = requests.post(f"{BASE_URL}/auth/signup", params={
-    "email": "alice@test.com",
-    "password": "different"
-})
-print(f"Status: {response.status_code}")
-print(f"Response: {response.json()}")
+def test_signup():
+    response = requests.post(
+        f"{BASE_URL}/signup",
+        params={
+            "email": "test@gmail.com",
+            "password": "1234"
+        }
+    )
+    print("Signup:", response.json())
 
-# Test 3: Login with correct credentials
-print("\n📝 TEST 3: Login with correct credentials")
-response = requests.post(f"{BASE_URL}/auth/login", params={
-    "email": "alice@test.com",
-    "password": "alice123"
-})
-print(f"Status: {response.status_code}")
-print(f"Response: {response.json()}")
 
-# Test 4: Login with wrong password (should fail)
-print("\n📝 TEST 4: Login with wrong password (should fail)")
-response = requests.post(f"{BASE_URL}/auth/login", params={
-    "email": "alice@test.com",
-    "password": "wrong"
-})
-print(f"Status: {response.status_code}")
-print(f"Response: {response.json()}")
+def test_login(password):
+    response = requests.post(
+        f"{BASE_URL}/login",
+        params={
+            "email": "test@gmail.com",
+            "password": password
+        }
+    )
+    print("Login:", response.json())
+    return response.json()
 
-# Test 5: Signup with empty password (should fail)
-print("\n📝 TEST 5: Signup with empty password (should fail)")
-response = requests.post(f"{BASE_URL}/auth/signup", params={
-    "email": "bob@test.com",
-    "password": ""
-})
-print(f"Status: {response.status_code}")
-print(f"Response: {response.json()}")
 
-print("\n" + "=" * 50)
-print("✅ TESTING COMPLETE")
-print("=" * 50)
+def test_profile(token):
+    response = requests.get(
+        f"{BASE_URL}/profile",
+        params={"token": token}
+    )
+    print("Profile:", response.json())
+
+
+# 👇 THIS MUST BE OUTSIDE FUNCTIONS
+if __name__ == "__main__":
+
+    # 1. Signup
+    test_signup()
+
+    # 2. Correct login
+    data = test_login("1234")
+
+    if "access_token" in data:
+        token = data["access_token"]
+
+        # 3. Valid profile
+        test_profile(token)
+
+        # 4. Invalid token
+        test_profile("wrongtoken")
+
+    # 5. Wrong password
+    test_login("wrongpassword")

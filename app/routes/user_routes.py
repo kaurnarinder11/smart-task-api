@@ -1,22 +1,39 @@
 from fastapi import APIRouter, HTTPException
 from app.services.users_service import create_user_logic, login_user_logic
+from app.core.security import hash_password, verify_password, create_token
+from jose import jwt
+from app.core.security import SECRET, ALGORITHM
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
+stored_hash = None
+
 @router.post("/signup")
 def signup(email: str, password: str):
-    result = create_user_logic(email, password)
-    
-    if isinstance(result, dict) and "error" in result:
-        raise HTTPException(status_code=400, detail=result["error"])
-
-    return {"message": "User created successfully", "user_id": result.id, "email": result.email}
+    global stored_hash
+    stored_hash = hash_password(password)
+    return {"msg": "user created"}
 
 @router.post("/login")
 def login(email: str, password: str):
-    result = login_user_logic(email, password)
-
-    if isinstance(result, dict) and "error" in result:
-        raise HTTPException(status_code=401, detail=result["error"])
+    global stored_hash
+   
+    if stored_hash is None:
+        return{"error": "no user found"}
     
-    return {"message": "Login successful", "user_id": result.id, "email": result.email}
+    if not verify_password(password, stored_hash):
+        return {"error":"wrong password"}
+    
+    token = create_token({"user_id":1})
+
+    return {"access_token": token}
+
+@router.get("/profile")
+def profile(token: str):
+    try:
+        data = jwt.decode(token, SECRET, algorithms= [ALGORITHM])
+        return data
+        print(token)
+    except:
+        
+        return {"error": "invalid token"}

@@ -1,26 +1,6 @@
 from app.models.user import User
 from app.db.database import SessionLocal
-
-def create_user_login(email:str, password:str):
-    if len(password.strip()) == 0:
-        return {"error": "Password cannot be empty"}
-    db = SessionLocal()
-
-    existing = db.query(User).filter(User.email == email).first()
-    if existing:
-        db.close()
-        return {"error": "user already exists"}
-    user = User(email=email, password=password)
-
-    db.add(user)
-    db.commit()
-    db.refresh(user)
-    db.close()
-
-    return user
-
-from app.models.user import User
-from app.db.database import SessionLocal
+from app.core.security import hash_password, verify_password, create_token as create_access_token  # NEW imports
 
 def create_user_logic(email: str, password: str):
     # Validation
@@ -35,8 +15,9 @@ def create_user_logic(email: str, password: str):
         db.close()
         return {"error": "User already exists"}
     
-    # Create user (NOTE: Password is plain text for now - we'll hash tomorrow)
-    user = User(email=email, password=password)
+    # CHANGED: Hash the password before storing
+    hashed_password = hash_password(password)
+    user = User(email=email, password=hashed_password)  # Store hashed version
     
     db.add(user)
     db.commit()
@@ -51,7 +32,12 @@ def login_user_logic(email: str, password: str):
     user = db.query(User).filter(User.email == email).first()
     db.close()
     
-    if not user or user.password != password:
+    #  CHANGED: Verify password using hash comparison, not plain text
+    if not user or not verify_password(password, user.password):
         return {"error": "Invalid credentials"}
     
-    return user
+    #  NEW: Create JWT token on successful login
+    token = create_access_token(user.id)
+    
+    #  CHANGED: Return token instead of user object
+    return {"access_token": token, "user_id": user.id, "email": user.email}
