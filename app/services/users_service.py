@@ -37,7 +37,7 @@ def login_user_logic(email: str, password: str):
         return {"error": "Invalid credentials"}
     
     #  NEW: Create JWT token on successful login
-    token = create_access_token(user.id)
+    token = create_access_token({"user_id": user.id})
     
     #  CHANGED: Return token instead of user object
     return {"access_token": token, "user_id": user.id, "email": user.email}

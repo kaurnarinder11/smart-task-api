@@ -1,6 +1,14 @@
 import bcrypt
 from jose import jwt
 from datetime import datetime, timedelta
+from app.db.database import SessionLocal
+from app.models.user import User
+from fastapi import HTTPException
+from jose import JWTError
+from fastapi import Depends
+from fastapi.security import OAuth2PasswordBearer
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 SECRET = "abc"
 ALGORITHM = "HS256"
@@ -25,3 +33,20 @@ def create_token(data: dict):
     to_encode.update({"exp": expire})
 
     return jwt.encode(to_encode, SECRET, algorithm=ALGORITHM)
+
+def get_current_user(token:str):
+    try:
+        payload = jwt.decode(token, SECRET, algorithms=[ALGORITHM])
+        user_id = payload.get("user_id")
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+
+    db = SessionLocal()
+    user = db.query(User).filter(User.id == user_id).first()
+   
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return user
+
+def get_current_user_dep(token: str = Depends(oauth2_scheme)):
+    return get_current_user(token)

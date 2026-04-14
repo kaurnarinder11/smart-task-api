@@ -5,11 +5,11 @@ from app.schemas.task import TaskCreate
 from app.db.database import SessionLocal
 
 # ============ CREATE ============
-def create_task_logic(task: TaskCreate):
+def create_task_logic(task: TaskCreate, user_id: int):
     """Create a new task in database"""
     db = SessionLocal()
     try:
-        db_task = Task(title=task.title, completed=task.completed)
+        db_task = Task(title=task.title, completed=task.completed, user_id=user_id)
         db.add(db_task)
         db.commit()
         db.refresh(db_task)
@@ -18,27 +18,27 @@ def create_task_logic(task: TaskCreate):
         db.close()
 
 # ============ READ ALL ============
-def get_all_tasks_logic():
-    """Get all tasks from database"""
+def get_all_tasks_logic(user_id: int):
+    """Get all tasks for the current user"""
     db = SessionLocal()
     try:
-        tasks = db.query(Task).all()
+        tasks = db.query(Task).filter(Task.user_id == user_id).all()
         return tasks
     finally:
         db.close()
 
 # ============ READ ONE ============
-def get_task_by_id_logic(task_id: int):
+def get_task_by_id_logic(task_id: int, user_id: int):
     """Get a single task by ID"""
     db = SessionLocal()
     try:
-        task = db.query(Task).filter(Task.id == task_id).first()
+        task = db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
         return task
     finally:
         db.close()
 
 # ============ UPDATE ============
-def update_task_logic(task_id: int, updated_data: TaskCreate):
+def update_task_logic(task_id: int, updated_data: TaskCreate, user_id: int):
     """
     Update an existing task
     Returns: Updated task OR None if not found
@@ -46,7 +46,7 @@ def update_task_logic(task_id: int, updated_data: TaskCreate):
     db = SessionLocal()
     try:
         # Step 1: Find the task
-        task = db.query(Task).filter(Task.id == task_id).first()
+        task = db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
         
         # Step 2: If not found, return None
         if not task:
@@ -75,7 +75,7 @@ def update_task_logic(task_id: int, updated_data: TaskCreate):
         db.close()
 
 # ============ DELETE ============
-def delete_task_logic(task_id: int):
+def delete_task_logic(task_id: int, user_id: int):
     """
     Delete a task by ID
     Returns: True if deleted, False if not found
@@ -83,7 +83,7 @@ def delete_task_logic(task_id: int):
     db = SessionLocal()
     try:
         # Step 1: Find the task
-        task = db.query(Task).filter(Task.id == task_id).first()
+        task = db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
         
         # Step 2: If not found, return False
         if not task:
@@ -99,14 +99,14 @@ def delete_task_logic(task_id: int):
         db.close()
 
 # ============ MARK COMPLETE (CHALLENGE) ============
-def mark_complete_logic(task_id: int):
+def mark_complete_logic(task_id: int, user_id: int):
     """
     Mark a task as completed
     Returns: Updated task OR None if not found OR error if already completed
     """
     db = SessionLocal()
     try:
-        task = db.query(Task).filter(Task.id == task_id).first()
+        task = db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
         
         if not task:
             return None
