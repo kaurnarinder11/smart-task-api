@@ -1,0 +1,2 @@
+New user signed up: a@test.com
+New user signed up: b@test.com

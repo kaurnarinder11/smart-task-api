@@ -40,6 +40,15 @@ def get_all_tasks_logic(user_id, page, limit, completed=None, sort="desc"):
     finally:
         db.close()
 
+# ============ READ ONE ============
+def get_task_by_id_logic(task_id: int, user_id: int):
+    """Get a single task by ID for the given user"""
+    db = SessionLocal()
+    try:
+        return db.query(Task).filter(Task.id == task_id, Task.user_id == user_id).first()
+    finally:
+        db.close()
+
 # ============ UPDATE ============
 def update_task_logic(task_id: int, updated_data: TaskCreate, user_id: int):
     """

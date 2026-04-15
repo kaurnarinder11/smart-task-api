@@ -21,6 +21,8 @@ def hash_password(password: str):
 
 # 🔐 VERIFY PASSWORD
 def verify_password(password: str, hashed_password: bytes):
+    if isinstance(hashed_password, str):
+        hashed_password = hashed_password.encode()
     return bcrypt.checkpw(password.encode(), hashed_password)
 
 

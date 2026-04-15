@@ -7,21 +7,22 @@ def print_section(title):
 
 def signup(email, password):
     return requests.post(
-        f"{BASE_URL}/auth/signup",params={"email":email, "password": password}).json()
-    
+        f"{BASE_URL}/auth/signup", params={"email": email, "password": password}).json()
 
 def login(email, password):
     return requests.post(
-        f"{BASE_URL}/auth/login", params={"email":email, "password":password}).json()
-    
+        f"{BASE_URL}/auth/login", params={"email": email, "password": password}).json()
+
 def create_task(token, title):
     return requests.post(
-        f"{BASE_URL}/tasks",headers={"Authorization": f"Bearer {token}"}, 
-        json={"title":title}).json()
-    
+        f"{BASE_URL}/tasks/",
+        headers={"Authorization": f"Bearer {token}"},
+        json={"title": title, "completed": False}
+    ).json()
+
 def get_tasks(token):
     return requests.get(
-        f"{BASE_URL}/tasks",
+        f"{BASE_URL}/tasks/",
         headers={"Authorization": f"Bearer {token}"}
     ).json()
 
@@ -51,7 +52,7 @@ def test_attacks(token_a, token_b):
     print_section("ATTACK TESTS")
 
     print("No token:")
-    print(requests.get(f"{BASE_URL}/tasks").json())
+    print(requests.get(f"{BASE_URL}/tasks/").json())
 
     print("Fake token:")
     print(get_tasks("fake_token"))
@@ -63,8 +64,10 @@ def test_attacks(token_a, token_b):
 if __name__ == "__main__":
     test_normal_flow()
 
-    # login again for tokens
     user_a = login("a@test.com", "1234")
     user_b = login("b@test.com", "1234")
 
     test_attacks(user_a["access_token"], user_b["access_token"])
+
+    token = user_a["access_token"]
+    print(create_task(token, "Background Task Test"))
