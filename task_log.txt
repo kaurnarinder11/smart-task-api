@@ -1,8 +1,0 @@
-Task created: Task A1
-Task created: Task A2
-Task created: Task B1
-Task created: Background Task Test
-Task created: Task A1
-Task created: Task A2
-Task created: Task B1
-Task created: Background Task Test
