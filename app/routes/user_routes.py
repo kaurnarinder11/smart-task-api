@@ -15,7 +15,7 @@ def signup(email: str, password: str, background_tasks: BackgroundTasks):
 
     # add background task
     background_tasks.add_task(log_signup, email)
-
+    
     return result
 
 
