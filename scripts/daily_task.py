@@ -17,4 +17,5 @@ def run_daily_job():
         print ("Too many pending tasks!")
 
 if __name__ == "__main__" :
-    run_daily_job()
+    run_daily_job() 
+    
