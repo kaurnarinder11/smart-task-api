@@ -4,7 +4,9 @@ __pycache__/
 *.pyc
 *.pyo
 *.db
-server.log
+*.log
+reports/
 signup_log.txt
 task_log.txt
 .DS_Store
+app.log

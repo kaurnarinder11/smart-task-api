@@ -1,43 +1,63 @@
+﻿from sqlalchemy.orm import Session
 from app.models.user import User
-from app.db.database import SessionLocal
-from app.core.security import hash_password, verify_password, create_token as create_access_token  # NEW imports
+from app.schemas.user import UserCreate
+from app.core.security import hash_password, verify_password, create_access_token
+from app.core.logger import get_logger
+from fastapi import HTTPException
 
-def create_user_logic(email: str, password: str):
-    # Validation
-    if len(password.strip()) == 0:
-        return {"error": "Password cannot be empty"}
+logger = get_logger("users_service")
+
+def create_user_logic(user_data: UserCreate, db: Session):
+    logger.info(f"Creating user with email: {user_data.email}")
     
-    db = SessionLocal()
+    existing_user = db.query(User).filter(
+        (User.email == user_data.email) | (User.username == user_data.username)
+    ).first()
     
-    # Check if user already exists
-    existing = db.query(User).filter(User.email == email).first()
-    if existing:
-        db.close()
-        return {"error": "User already exists"}
+    if existing_user:
+        if existing_user.email == user_data.email:
+            raise HTTPException(400, "Email already registered")
+        else:
+            raise HTTPException(400, "Username already taken")
     
-    # CHANGED: Hash the password before storing
-    hashed_password = hash_password(password)
-    user = User(email=email, password=hashed_password)  # Store hashed version
+    hashed_pwd = hash_password(user_data.password)
+    db_user = User(
+        username=user_data.username,
+        email=user_data.email,
+        hashed_password=hashed_pwd
+    )
     
-    db.add(user)
+    db.add(db_user)
     db.commit()
-    db.refresh(user)
-    db.close()
+    db.refresh(db_user)
     
-    return user
+    logger.info(f"User created successfully with ID: {db_user.id}")
+    return db_user
 
-def login_user_logic(email: str, password: str):
-    db = SessionLocal()
+def login_user_logic(email: str, password: str, db: Session):
+    logger.info(f"Login attempt for email: {email}")
     
     user = db.query(User).filter(User.email == email).first()
-    db.close()
     
-    #  CHANGED: Verify password using hash comparison, not plain text
-    if not user or not verify_password(password, user.password):
-        return {"error": "Invalid credentials"}
+    if not user:
+        raise HTTPException(401, "Invalid email or password")
     
-    #  NEW: Create JWT token on successful login
-    token = create_access_token({"user_id": user.id})
+    if not verify_password(password, user.hashed_password):
+        raise HTTPException(401, "Invalid email or password")
     
-    #  CHANGED: Return token instead of user object
-    return {"access_token": token, "user_id": user.id, "email": user.email}
+    token = create_access_token(data={"sub": str(user.id), "email": user.email})
+    
+    logger.info(f"User {user.email} logged in successfully")
+    return {
+        "access_token": token,
+        "token_type": "bearer",
+        "user_id": user.id,
+        "email": user.email,
+        "username": user.username
+    }
+
+def get_user_by_id(user_id: int, db: Session):
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        raise HTTPException(404, "User not found")
+    return user

@@ -1,0 +1,115 @@
+2026-04-22 21:25:30 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:25:30 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:25:30 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:30:17 | INFO     | smart_task_api.user_routes | Line 14 | Signup attempt for email: test@test.com
+2026-04-22 21:30:17 | INFO     | smart_task_api.users_service | Line 11 | Creating user with email: test@test.com
+2026-04-22 21:33:35 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:33:35 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:33:35 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:37:45 | INFO     | smart_task_api.user_routes | Line 14 | Signup attempt for email: john@test.com
+2026-04-22 21:37:45 | INFO     | smart_task_api.users_service | Line 11 | Creating user with email: john@test.com
+2026-04-22 21:37:46 | INFO     | smart_task_api.users_service | Line 34 | User created successfully with ID: 1
+2026-04-22 21:38:13 | INFO     | smart_task_api.user_routes | Line 20 | Login attempt for email: john@test.com
+2026-04-22 21:38:13 | INFO     | smart_task_api.users_service | Line 38 | Login attempt for email: john@test.com
+2026-04-22 21:39:03 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:39:03 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:39:03 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:39:26 | INFO     | smart_task_api.user_routes | Line 20 | Login attempt for email: john@test.com
+2026-04-22 21:39:26 | INFO     | smart_task_api.users_service | Line 38 | Login attempt for email: john@test.com
+2026-04-22 21:39:26 | INFO     | smart_task_api.users_service | Line 50 | User john@test.com logged in successfully
+2026-04-22 21:41:55 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:41:55 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:41:55 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:42:04 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:42:04 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:42:04 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:42:15 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:42:15 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:42:15 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:42:23 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:42:23 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:42:23 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:42:46 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:42:46 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:42:46 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:42:53 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:42:53 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:42:53 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:43:01 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:43:01 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:43:01 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:54:26 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:54:26 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:54:26 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:54:35 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:54:35 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:54:35 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:54:42 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:54:42 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:54:42 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:54:47 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:54:47 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:54:47 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:55:00 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:55:00 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:55:00 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:55:16 | INFO     | smart_task_api.main | Line 29 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:55:16 | INFO     | smart_task_api.main | Line 30 | 📦 Database connected
+2026-04-22 21:55:16 | INFO     | smart_task_api.main | Line 31 | ✅ All routers registered
+2026-04-22 21:55:31 | INFO     | smart_task_api.main | Line 15 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:55:31 | INFO     | smart_task_api.main | Line 16 | 📦 Database connected
+2026-04-22 21:55:31 | INFO     | smart_task_api.main | Line 17 | ✅ All routers registered
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 1
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 2
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 3
+2026-04-22 21:55:39 | INFO     | smart_task_api.task_service | Line 73 | Updating task 3 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 90 | Task 3 updated successfully
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 4
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 73 | Updating task 4 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 73 | Updating task 99999 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 5
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 109 | Marking task 5 complete for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 122 | Task 5 marked complete
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 6
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 109 | Marking task 6 complete for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 109 | Marking task 99999 complete for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 7
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 95 | Deleting task 7 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 104 | Task 7 deleted successfully
+2026-04-22 21:55:40 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 7 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 95 | Deleting task 99999 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 7
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 888
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 8
+2026-04-22 21:55:40 | DEBUG    | smart_task_api.task_service | Line 37 | Fetching tasks for user 999, page 1
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 9
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 10
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 11
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 12
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 13
+2026-04-22 21:55:40 | DEBUG    | smart_task_api.task_service | Line 37 | Fetching tasks for user 999, page 1
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 14
+2026-04-22 21:55:40 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 14 for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-04-22 21:55:40 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 15
+2026-04-22 21:55:40 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 15 for user 888
+2026-04-22 21:59:31 | INFO     | smart_task_api.main | Line 15 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 21:59:31 | INFO     | smart_task_api.main | Line 16 | 📦 Database connected
+2026-04-22 21:59:31 | INFO     | smart_task_api.main | Line 17 | ✅ All routers registered
+2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 15 | 🚀 ========== SMART TASK API STARTING ========== 🚀
+2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 16 | 📦 Database connected
+2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 17 | ✅ All routers registered
