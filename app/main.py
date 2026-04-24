@@ -1,17 +1,18 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
-from app.db.database import engine
-from app.models.user import User
-from app.models.task import Task
+from app.db.database import engine, Base
 from app.routes import user_routes, tasks as task_routes
 from app.routes import jokes_route, report_routes
 from app.core.logger import get_logger
+
+# Import models so they register with Base
+from app.models import user, task
 
 logger = get_logger("main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    from app.db.database import Base
+    # Create all tables
     Base.metadata.create_all(bind=engine)
     logger.info("?? ========== SMART TASK API STARTING ========== ??")
     logger.info("?? Database connected")
