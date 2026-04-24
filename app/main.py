@@ -1,7 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.db.database import engine
-from app.models import user, task
+from app.models.user import User
+from app.models.task import Task
 from app.routes import user_routes, tasks as task_routes
 from app.routes import jokes_route, report_routes
 from app.core.logger import get_logger
@@ -10,11 +11,11 @@ logger = get_logger("main")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    user.Base.metadata.create_all(bind=engine)
-    task.Base.metadata.create_all(bind=engine)
-    logger.info("🚀 ========== SMART TASK API STARTING ========== 🚀")
-    logger.info("📦 Database connected")
-    logger.info("✅ All routers registered")
+    from app.db.database import Base
+    Base.metadata.create_all(bind=engine)
+    logger.info("?? ========== SMART TASK API STARTING ========== ??")
+    logger.info("?? Database connected")
+    logger.info("? All routers registered")
     yield
 
 app = FastAPI(
