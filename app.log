@@ -113,3 +113,52 @@
 2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 15 | 🚀 ========== SMART TASK API STARTING ========== 🚀
 2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 16 | 📦 Database connected
 2026-04-22 22:03:13 | INFO     | smart_task_api.main | Line 17 | ✅ All routers registered
+2026-05-07 06:56:18 | INFO     | smart_task_api.storage | Line 106 | Using LocalStorage (S3 not configured or not in production)
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 1
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 2
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 3
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 73 | Updating task 3 for user 999
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 90 | Task 3 updated successfully
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 4
+2026-05-07 06:56:23 | INFO     | smart_task_api.task_service | Line 73 | Updating task 4 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 73 | Updating task 99999 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 5
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 109 | Marking task 5 complete for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 122 | Task 5 marked complete
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 6
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 109 | Marking task 6 complete for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 109 | Marking task 99999 complete for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 7
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 95 | Deleting task 7 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 104 | Task 7 deleted successfully
+2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 7 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 95 | Deleting task 99999 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 7
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 888
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 8
+2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 37 | Fetching tasks for user 999, page 1
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 9
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 10
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 11
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 12
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 13
+2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 37 | Fetching tasks for user 999, page 1
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 14
+2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 14 for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
+2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 15
+2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 15 for user 888
