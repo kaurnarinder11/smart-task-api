@@ -23,6 +23,30 @@ def create_task(
     current_user: User = Depends(get_current_user)
 ):
     logger.info(f"Creating task for user: {current_user.email}")
+    
+    # 🔥 NEW VALIDATION 1: Empty title check
+    if not task.title or task.title.strip() == "":
+        logger.warning(f"User {current_user.email} tried to create task with empty title")
+        raise HTTPException(
+            status_code=400,
+            detail="Task title cannot be empty"
+        )
+    
+    # 🔥 NEW VALIDATION 2: Title too long
+    if len(task.title) > 200:
+        logger.warning(f"User {current_user.email} tried title with {len(task.title)} chars (max 200)")
+        raise HTTPException(
+            status_code=400,
+            detail="Task title cannot exceed 200 characters"
+        )
+    
+    # 🔥 NEW VALIDATION 3: Description type check
+    if task.description is not None and not isinstance(task.description, str):
+        raise HTTPException(
+            status_code=400,
+            detail="Description must be text"
+        )
+    
     return create_task_logic(task, current_user.id, db)
 
 @router.get("/")
@@ -116,6 +140,21 @@ def update_task(
     current_user: User = Depends(get_current_user)
 ):
     logger.info(f"Updating task {task_id} for user: {current_user.email}")
+    
+    # 🔥 NEW: Validation for update
+    if task_update.title is not None:
+        if not task_update.title or task_update.title.strip() == "":
+            logger.warning(f"User {current_user.email} tried to update task with empty title")
+            raise HTTPException(
+                status_code=400,
+                detail="Task title cannot be empty"
+            )
+        if len(task_update.title) > 200:
+            raise HTTPException(
+                status_code=400,
+                detail="Task title cannot exceed 200 characters"
+            )
+    
     return update_task_logic(task_id, task_update, current_user.id, db)
 
 @router.delete("/{task_id}")
@@ -125,6 +164,17 @@ def delete_task(
     current_user: User = Depends(get_current_user)
 ):
     logger.info(f"Deleting task {task_id} for user: {current_user.email}")
+    
+    # 🔥 NEW: Check if task exists before deleting
+    task = db.query(Task).filter(Task.id == task_id, Task.user_id == current_user.id).first()
+    
+    if not task:
+        logger.warning(f"User {current_user.email} tried to delete non-existent task {task_id}")
+        raise HTTPException(
+            status_code=404,
+            detail=f"Task with id {task_id} not found"
+        )
+    
     return delete_task_logic(task_id, current_user.id, db)
 
 @router.patch("/{task_id}/complete", response_model=TaskResponse)
@@ -134,4 +184,15 @@ def mark_complete(
     current_user: User = Depends(get_current_user)
 ):
     logger.info(f"Marking task {task_id} complete for user: {current_user.email}")
+    
+    # 🔥 NEW: Check if task exists before marking complete
+    task = db.query(Task).filter(Task.id == task_id, Task.user_id == current_user.id).first()
+    
+    if not task:
+        logger.warning(f"User {current_user.email} tried to complete non-existent task {task_id}")
+        raise HTTPException(
+            status_code=404,
+            detail=f"Task with id {task_id} not found"
+        )
+    
     return mark_complete_logic(task_id, current_user.id, db)

@@ -5,6 +5,9 @@ from app.routes import user_routes, tasks as task_routes
 from app.routes import jokes_route, report_routes, health  # ✅ ADDED health import
 from app.core.logger import get_logger
 
+# NEW: Import global error handler
+from app.middleware.error_handler import GlobalErrorHandler
+
 # Import models so they register with Base
 from app.models import user, task
 
@@ -14,9 +17,9 @@ logger = get_logger("main")
 async def lifespan(app: FastAPI):
     # Create all tables
     Base.metadata.create_all(bind=engine)
-    logger.info("?? ========== SMART TASK API STARTING ========== ??")
-    logger.info("?? Database connected")
-    logger.info("? All routers registered")
+    logger.info("🎉 ========== SMART TASK API STARTING ========== 🎉")
+    logger.info("✅ Database connected")
+    logger.info("✅ All routers registered")
     yield
 
 app = FastAPI(
@@ -25,6 +28,9 @@ app = FastAPI(
     version="1.0.0",
     lifespan=lifespan,
 )
+
+# 🔥 NEW: Add global error handler (catches ALL errors across ALL routes)
+app.add_middleware(GlobalErrorHandler)
 
 # Include routers
 app.include_router(user_routes.router)
