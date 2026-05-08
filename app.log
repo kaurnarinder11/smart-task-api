@@ -162,3 +162,41 @@
 2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 999
 2026-05-07 06:56:24 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 15
 2026-05-07 06:56:24 | DEBUG    | smart_task_api.task_service | Line 63 | Fetching task 15 for user 888
+2026-05-08 08:45:13 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 08:45:13 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 08:45:13 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 08:53:55 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 08:53:55 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 08:53:55 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 08:58:14 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 08:58:14 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 08:58:14 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 08:58:43 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 08:58:43 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 08:58:43 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 08:59:26 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 08:59:26 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 08:59:26 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 09:00:32 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 09:00:32 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 09:00:32 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 09:01:22 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 09:01:22 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 09:01:22 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 09:07:33 | INFO     | smart_task_api.user_routes | Line 14 | Signup attempt for email: test24@example.com
+2026-05-08 09:07:33 | INFO     | smart_task_api.users_service | Line 11 | Creating user with email: test24@example.com
+2026-05-08 09:07:34 | INFO     | smart_task_api.users_service | Line 34 | User created successfully with ID: 1
+2026-05-08 09:09:00 | INFO     | smart_task_api.user_routes | Line 20 | Login attempt for email: test24@example.com
+2026-05-08 09:09:00 | INFO     | smart_task_api.users_service | Line 38 | Login attempt for email: test24@example.com
+2026-05-08 09:09:01 | INFO     | smart_task_api.users_service | Line 50 | User test24@example.com logged in successfully
+2026-05-08 09:09:06 | INFO     | smart_task_api.tasks_route | Line 53 | Fetching paginated tasks for user: test24@example.com
+2026-05-08 09:09:36 | INFO     | smart_task_api.tasks_route | Line 37 | Fetching tasks for user: test24@example.com
+2026-05-08 09:09:36 | DEBUG    | smart_task_api.task_service | Line 37 | Fetching tasks for user 1, page 1
+2026-05-08 09:12:58 | INFO     | smart_task_api.main | Line 17 | ?? ========== SMART TASK API STARTING ========== ??
+2026-05-08 09:12:58 | INFO     | smart_task_api.main | Line 18 | ?? Database connected
+2026-05-08 09:12:58 | INFO     | smart_task_api.main | Line 19 | ? All routers registered
+2026-05-08 09:13:12 | INFO     | smart_task_api.tasks_route | Line 53 | Fetching paginated tasks for user: test24@example.com
+2026-05-08 09:13:52 | INFO     | smart_task_api.tasks_route | Line 25 | Creating task for user: test24@example.com
+2026-05-08 09:13:52 | INFO     | smart_task_api.task_service | Line 13 | Creating task for user 1
+2026-05-08 09:13:52 | INFO     | smart_task_api.task_service | Line 31 | Task created with ID: 1
+2026-05-08 09:13:52 | INFO     | smart_task_api.tasks_route | Line 53 | Fetching paginated tasks for user: test24@example.com

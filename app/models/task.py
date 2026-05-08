@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey, Index
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.db.database import Base
@@ -18,6 +18,15 @@ class Task(Base):
     
     # Relationship with user
     owner = relationship("User", back_populates="tasks")
+    
+    # ✅ ADDED: Database indexes for faster queries
+    __table_args__ = (
+        Index('idx_tasks_user_id', 'user_id'),           # For filtering by user
+        Index('idx_tasks_completed', 'completed'),       # For filtering completed tasks
+        Index('idx_tasks_created_at', 'created_at'),     # For sorting by date
+        Index('idx_tasks_user_completed', 'user_id', 'completed'),  # Composite index
+        Index('idx_tasks_priority', 'priority'),         # For filtering by priority
+    )
     
     def __repr__(self):
         return f"Task(id={self.id}, title='{self.title}', completed={self.completed})"

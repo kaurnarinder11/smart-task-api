@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, Index
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
 from app.db.database import Base
@@ -16,3 +16,10 @@ class User(Base):
     
     # Relationship with tasks
     tasks = relationship("Task", back_populates="owner", cascade="all, delete-orphan")
+    
+    # ✅ ADDED: Database indexes for faster queries
+    __table_args__ = (
+        Index('idx_users_created_at', 'created_at'),     # For sorting users by join date
+        Index('idx_users_is_active', 'is_active'),       # For filtering active/inactive users
+        Index('idx_users_email_username', 'email', 'username'),  # Composite for login queries
+    )

@@ -2,7 +2,7 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.db.database import engine, Base
 from app.routes import user_routes, tasks as task_routes
-from app.routes import jokes_route, report_routes
+from app.routes import jokes_route, report_routes, health  # ✅ ADDED health import
 from app.core.logger import get_logger
 
 # Import models so they register with Base
@@ -31,6 +31,7 @@ app.include_router(user_routes.router)
 app.include_router(task_routes.router)
 app.include_router(jokes_route.router)
 app.include_router(report_routes.router)
+app.include_router(health.router)  # ✅ ADDED health router
 
 @app.get("/")
 def root():
@@ -41,10 +42,7 @@ def root():
             "auth": "/auth/signup, /auth/login",
             "tasks": "/tasks",
             "jokes": "/jokes",
-            "reports": "/reports"
+            "reports": "/reports",
+            "health": "/health"  # ✅ ADDED health to endpoints list
         }
     }
-
-@app.get("/health")
-def health_check():
-    return {"status": "healthy"}
