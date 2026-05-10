@@ -1,3 +1,4 @@
+[![Tests](https://github.com/kaurnarinder11/smart-task-api/actions/workflows/test.yml/badge.svg)](https://github.com/kaurnarinder11/smart-task-api/actions/workflows/test.yml)
 [![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com)
 [![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://docker.com)
