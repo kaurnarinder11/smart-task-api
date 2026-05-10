@@ -60,3 +60,21 @@ alembic upgrade head
 
 # Start the server
 uvicorn app.main:app --reload
+## 🤖 Acknowledgments
+
+This project was built independently by [Narinder Kaur](https://github.com/kaurnarinder11).  
+
+AI assistance (Claude) was used for:
+- Code suggestions and debugging
+- README formatting assistance
+
+All architecture decisions, feature planning, testing strategy, and deployment were done by me.
+
+## 📬 Connect With Me
+
+- **GitHub:** [@kaurnarinder11](https://github.com/kaurnarinder11)
+- **Email:** nk6888700@gmail.com
+
+---
+
+⭐ If you found this project helpful, please star the repository!
