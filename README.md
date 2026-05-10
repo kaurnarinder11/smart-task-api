@@ -1,68 +1,80 @@
-# Smart Task API
+[![Python](https://img.shields.io/badge/Python-3.10+-blue.svg)](https://python.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.115+-green.svg)](https://fastapi.tiangolo.com)
+[![Docker](https://img.shields.io/badge/Docker-Enabled-blue.svg)](https://docker.com)
+[![Tests](https://img.shields.io/badge/Tests-Pytest-brightgreen.svg)](https://pytest.org)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success.svg)](https://smart-task-api-b89q.onrender.com/docs)
 
-A task management REST API built with FastAPI, SQLAlchemy, and SQLite.
+# 📋 Smart Task API
 
-## Setup
+A **production-ready** Task Management REST API built with FastAPI, SQLAlchemy, JWT authentication, Docker, and Alembic migrations.
+
+## ✨ Features
+
+- 🔐 **JWT Authentication** - Signup, login, protected routes
+- 📝 **Full CRUD Operations** - Create, read, update, delete tasks
+- ✅ **Task Completion** - Mark tasks as complete/incomplete
+- 📊 **Reports** - Generate task analytics
+- 🎲 **External API Integration** - Random joke endpoint
+- 🐳 **Docker Support** - Containerized for easy deployment
+- 🗄️ **Database Migrations** - Alembic for schema version control
+- 🧪 **Unit Tests** - Pytest with coverage
+- 🛡️ **Global Error Handling** - Production-grade error responses
+- ☁️ **Cloud-Ready** - Storage abstraction pattern
+
+## 🚀 Live Demo
+
+**API Documentation (Swagger UI):** [https://smart-task-api-b89q.onrender.com/docs](https://smart-task-api-b89q.onrender.com/docs)
+
+Click the link above to test all endpoints live!
+
+## 🛠️ Tech Stack
+
+| Category | Technologies |
+|----------|--------------|
+| Framework | FastAPI |
+| Database | SQLite with SQLAlchemy ORM |
+| Auth | JWT (python-jose, passlib) |
+| Migrations | Alembic |
+| Testing | Pytest |
+| Container | Docker |
+| Deployment | Render.com |
+
+## 📦 Local Setup
+
+### Option 1: Standard Python
 
 ```bash
+# Clone the repo
+git clone https://github.com/kaurnarinder11/smart-task-api.git
+cd smart-task-api
+
+# Create virtual environment
 python -m venv venv
-.\venv\Scripts\Activate.ps1
+source venv/bin/activate  # On Windows: .\venv\Scripts\Activate.ps1
+
+# Install dependencies
 pip install -r requirements.txt
-```
 
-## Running the app
+# Run migrations
+alembic upgrade head
 
-```bash
+# Start the server
 uvicorn app.main:app --reload
-```
+## 🤖 Acknowledgments
 
-API docs available at http://localhost:8000/docs
+This project was built independently by [Narinder Kaur](https://github.com/kaurnarinder11).  
 
-## Running tests
+AI assistance (Claude) was used for:
+- Code suggestions and debugging
+- README formatting assistance
 
-```bash
-pytest tests/ -v
-```
+All architecture decisions, feature planning, testing strategy, and deployment were done by me.
 
-## Database migrations (Alembic)
+## 📬 Connect With Me
 
-**First time setup** (already done):
-```bash
-alembic upgrade head
-```
+- **GitHub:** [@kaurnarinder11](https://github.com/kaurnarinder11)
+- **Email:** nk6888700@gmail.com
 
-**After changing a model** (e.g. added a column):
-```bash
-alembic revision --autogenerate -m "describe what you changed"
-alembic upgrade head
-```
+---
 
-**Roll back the last migration:**
-```bash
-alembic downgrade -1
-```
-
-**Check current database version:**
-```bash
-alembic current
-```
-
-**View migration history:**
-```bash
-alembic history
-```
-
-## API Endpoints
-
-| Method | Endpoint | Auth | Description |
-|--------|----------|------|-------------|
-| POST | /auth/signup | No | Register a new user |
-| POST | /auth/login | No | Login and get JWT token |
-| GET | /tasks/ | Yes | List your tasks (paginated) |
-| POST | /tasks/ | Yes | Create a task |
-| GET | /tasks/{id} | Yes | Get a task |
-| PUT | /tasks/{id} | Yes | Update a task |
-| DELETE | /tasks/{id} | Yes | Delete a task |
-| PATCH | /tasks/{id}/complete | Yes | Mark task as complete |
-| GET | /reports/tasks | Yes | Generate task report |
-| GET | /joke/random | No | Get a random joke |
+⭐ If you found this project helpful, please star the repository!
